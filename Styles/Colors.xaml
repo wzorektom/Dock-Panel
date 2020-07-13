@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Main Window Background colour - like Snagit-->
+    <Color x:Key="BackgroundDefault">#FFECF5FA</Color>
+    <SolidColorBrush x:Key="BackgroundDefaultBrush" Color="{StaticResource MaterialDesignCardBackground}"/>
+
+
+    <!-- Main Window Background colour - when up RED -->
+    <Color x:Key="BackgroundRedAnimateUp">#FFFF0000</Color>
+    <SolidColorBrush x:Key="BackgroundRedUpBrush" Color="{StaticResource BackgroundRedAnimateUp}"/>
+
+   
+
+
+
+
+
+    <!-- Dark shadow for Window -->
+    <DropShadowEffect x:Key="DarkShadow" Opacity="0.6" ShadowDepth="3" RenderingBias="Quality"/>
+
+    <!-- Light shadow for other controls -->
+    <DropShadowEffect x:Key="LightShadow" Opacity="0.3" ShadowDepth="2" RenderingBias="Quality"/>
+
+</ResourceDictionary>

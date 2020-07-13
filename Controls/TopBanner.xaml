@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="DockPanel.Controls.TopBanner"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DockPanel.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="530">
+    
+    <Grid Height="{Binding TopBannerHeight}" VerticalAlignment="Top"
+          Background="#FF458DCB">
+        <TextBlock Text="{Binding TopBanner, FallbackValue=Dock Panel}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+
+        <local:TopBannerMenu/>
+
+    </Grid>
+</UserControl>

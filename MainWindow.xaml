@@ -1,0 +1,94 @@
+﻿<Window x:Class="DockPanel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DockPanel.Controls" 
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBodyLight}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Icon="DockPanel.ico"
+        Title="MainWindow" Name="DockPanel" Height="275" Width="570" 
+        Background="Transparent" 
+        MouseDown="DockPanel_MouseDown" 
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        WindowStartupLocation="Manual" 
+        Top="-241" 
+        ShowInTaskbar="False" 
+        Topmost="True">
+
+
+
+    
+
+    <Window.Triggers>
+
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource WindowDownStartup}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+            <BeginStoryboard Storyboard="{StaticResource WindowDown}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+            <BeginStoryboard Storyboard="{StaticResource WindowUp}"/>
+        </EventTrigger>
+
+
+        
+
+    </Window.Triggers>
+
+
+    <Border Background="{StaticResource MaterialDesignCardBackground}" 
+            x:Name="MyApp" Effect="{StaticResource LightShadow}" 
+            Margin="5,0,5,5" CornerRadius="0,0,4,4">
+
+
+
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <local:TopBanner Grid.Row="0" Grid.ColumnSpan="2"/>
+            <local:NavPan Grid.Row="1" Grid.Column="0" DataContext="{Binding Navigator}"/>
+
+
+
+            <ContentControl x:Name="Cont" 
+                Grid.Row="1" Grid.Column="1"
+                Content="{Binding Navigator.CurrentViewModel}"/>
+
+
+
+
+        </Grid>
+
+
+
+
+        
+
+
+       
+            
+     
+        
+        
+    </Border>
+
+
+</Window>

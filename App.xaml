@@ -1,0 +1,169 @@
+﻿<Application
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DockPanel"
+             xmlns:views="clr-namespace:DockPanel.Views"
+             xmlns:viewmodels="clr-namespace:DockPanel.ViewModel"
+             x:Class="DockPanel.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Order is important -->
+                <ResourceDictionary Source="Styles/Colors.xaml"/>
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Grey.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Blue.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+
+            <DataTemplate DataType="{x:Type viewmodels:FrontEndViewModel}">
+                <views:FrontEnd/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ServerViewModel}">
+                <views:Servers/>
+            </DataTemplate>
+
+
+            <!-- Startup animation - when program starts -->
+                <Storyboard x:Key="WindowDownStartup">
+
+                    <!-- Slide down -->
+                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.3" DecelerationRatio="0.8" 
+                                           Duration="0:0:0.4" 
+                                           Storyboard.TargetProperty="(Window.Top)" 
+                                           Storyboard.TargetName="DockPanel">
+
+                        <EasingDoubleKeyFrame Value="0">
+
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <PowerEase Power="4" EasingMode="EaseInOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+
+                        </EasingDoubleKeyFrame>
+
+                    </DoubleAnimationUsingKeyFrames>
+
+                    <!--Slide up the window-->
+                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:1.0" DecelerationRatio="0.8" 
+                                           Duration="0:0:0.4" 
+                                           Storyboard.TargetProperty="(Window.Top)" 
+                                           Storyboard.TargetName="DockPanel">
+
+                        <EasingDoubleKeyFrame Value="-264">
+
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <PowerEase Power="2" EasingMode="EaseInOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+
+                        </EasingDoubleKeyFrame>
+
+                    </DoubleAnimationUsingKeyFrames>
+
+                    <!-- Change color to Red when up -->
+                    <ColorAnimationUsingKeyFrames BeginTime="0:0:1.5" 
+                                          Storyboard.TargetName="MyApp" 
+                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                        <LinearColorKeyFrame Value="Red" 
+                                     KeyTime="00:00:0.3" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+
+
+                <!-- Animation when mouse over -->
+                <Storyboard x:Key="WindowDown">
+
+
+                    <!-- Change window background color to default when window down -->
+                    <ColorAnimationUsingKeyFrames BeginTime="0:0:0.3" 
+                                          Storyboard.TargetName="MyApp" 
+                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                        <LinearColorKeyFrame Value="#FF424242" 
+                                     KeyTime="00:00:0.2" />
+                    </ColorAnimationUsingKeyFrames>
+
+                    <!-- Slide window down to 0 -->
+                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.6" Duration="0:0:0.4" 
+                                           DecelerationRatio="0.8"  
+                                           Storyboard.TargetProperty="(Window.Top)" 
+                                           Storyboard.TargetName="DockPanel" >
+
+                        <EasingDoubleKeyFrame Value="0">
+
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <PowerEase Power="3" EasingMode="EaseInOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+
+                        </EasingDoubleKeyFrame>
+
+
+                    </DoubleAnimationUsingKeyFrames>
+
+                </Storyboard>
+
+
+
+
+                <!-- Animation when mouse leave -->
+                <Storyboard x:Key="WindowUp" >
+
+                    <!-- Slide window up to -219 -->
+                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.4" DecelerationRatio="0.8" 
+                                           Duration="0:0:0.4" 
+                                           Storyboard.TargetProperty="(Window.Top)" 
+                                           Storyboard.TargetName="DockPanel">
+
+                        <EasingDoubleKeyFrame Value="-264">
+
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <PowerEase Power="2" EasingMode="EaseInOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+
+                        </EasingDoubleKeyFrame>
+
+                    </DoubleAnimationUsingKeyFrames>
+
+                    <!-- Change background color to Red after window is up -->
+                    <ColorAnimationUsingKeyFrames BeginTime="0:0:1.0" 
+                                          Storyboard.TargetName="MyApp" 
+                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                        <LinearColorKeyFrame Value="Red" 
+                                     KeyTime="00:00:0.4" />
+                    </ColorAnimationUsingKeyFrames>
+
+
+                </Storyboard>
+
+
+                <!--Change the window size to 550-->
+                <!--<Storyboard x:Key="ExtendWindow">
+                    <DoubleAnimation BeginTime="0:0:0.3" Duration="00:00:0.3" 
+                             AccelerationRatio="0.4" DecelerationRatio="0.6" 
+                             From="530" To="580" Storyboard.TargetProperty="(Window.Width)" 
+                             Storyboard.TargetName="DockPanel"/>
+                </Storyboard>
+
+                --><!--Change the window size back to original size--><!--
+                <Storyboard x:Key="RetractWindow">
+                    <DoubleAnimation BeginTime="0:0:0.3" Duration="00:00:0.3" 
+                             AccelerationRatio="0.4" DecelerationRatio="0.6" 
+                             From="580" To="530" Storyboard.TargetProperty="(Window.Width)" 
+                             Storyboard.TargetName="DockPanel"/>
+                </Storyboard>-->
+
+
+            
+
+
+        </ResourceDictionary>
+        
+        
+
+
+
+    </Application.Resources>
+</Application>
